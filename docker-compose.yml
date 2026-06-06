@@ -1,0 +1,11 @@
+services:
+  septimo-site:
+    build: .
+    container_name: septimo-site
+    restart: unless-stopped
+    networks:
+      - proxy-net
+
+networks:
+  proxy-net:
+    external: true
