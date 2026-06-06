@@ -1,0 +1,111 @@
+/* ============================================================
+   layout.css — page shell, masthead, grids, spacing structure
+   ============================================================ */
+
+.wrap {
+  width: min(calc(100% - 2.5rem), var(--wrap));
+  margin-inline: auto;
+}
+
+/* --- Masthead / nameplate ----------------------------------- */
+.masthead {
+  padding: 1.6rem 0;
+}
+
+.masthead-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+/* --- Main flow ---------------------------------------------- */
+main.wrap {
+  padding-bottom: 5.5rem;
+}
+
+/* --- Hero / standfirst -------------------------------------- */
+.hero {
+  padding: clamp(2rem, 6vw, 4.5rem) 0 clamp(1.75rem, 4vw, 3rem);
+  max-width: 54rem;
+}
+
+.hero--edition {
+  max-width: 62rem;
+}
+
+/* --- Featured edition --------------------------------------- */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem) 0 clamp(2.25rem, 5vw, 3.5rem);
+}
+
+/* --- Two-column section ------------------------------------- */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem 4rem;
+  padding-top: 1rem;
+}
+
+.col-aside {
+  display: grid;
+  gap: 2rem;
+  align-content: start;
+}
+
+/* --- Article ------------------------------------------------ */
+.article {
+  width: 100%;
+  margin-inline: auto;
+}
+
+.article-head {
+  padding: clamp(1.5rem, 5vw, 3.5rem) 0 clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0.5rem;
+}
+
+.article .breadcrumb,
+.hero ~ * .breadcrumb {
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* --- Footer ------------------------------------------------- */
+.site-footer {
+  margin-top: 3rem;
+  padding: 2.5rem 0 3.5rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+/* --- Responsive --------------------------------------------- */
+@media (min-width: 720px) {
+  .feature {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+@media (min-width: 900px) {
+  .columns {
+    grid-template-columns: 1.7fr 1fr;
+    align-items: start;
+  }
+}

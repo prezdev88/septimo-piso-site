@@ -1,0 +1,158 @@
+/* ============================================================
+   theme.css — color skin, press rules, dark theme
+   ============================================================ */
+
+/* Thin accent bar pinned to the very top of the page */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 60;
+  background: var(--accent);
+}
+
+/* Newspaper-style nameplate rules */
+.masthead {
+  border-top: 1px solid var(--line);
+  border-bottom: 3px solid var(--ink);
+}
+
+/* Footer sits under a hairline */
+.site-footer {
+  border-top: 1px solid var(--line);
+}
+
+/* Edition numeral fades so the headline leads */
+.feature-side {
+  opacity: 0.92;
+}
+
+/* Quotation marks in body copy use editorial color */
+.prose p {
+  quotes: "\201C" "\201D";
+}
+
+/* Smooth transition when the theme flips */
+body,
+.masthead,
+.note,
+.tag,
+.section-rule,
+.edition-item,
+.source-list li {
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+
+/* ============================================================
+   Dark theme
+   - manual override via [data-theme]
+   - automatic fallback to the reader's system preference
+   ============================================================ */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14120e;
+  --surface: #1c1915;
+  --panel: #221e18;
+  --ink: #f2ece1;
+  --muted: #b3a999;
+  --faint: #7d7264;
+  --line: rgba(242, 236, 225, 0.16);
+  --line-strong: rgba(242, 236, 225, 0.85);
+
+  --accent: #e2705a;
+  --accent-deep: #ef8a76;
+  --accent-tint: #2e1d18;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #14120e;
+    --surface: #1c1915;
+    --panel: #221e18;
+    --ink: #f2ece1;
+    --muted: #b3a999;
+    --faint: #7d7264;
+    --line: rgba(242, 236, 225, 0.16);
+    --line-strong: rgba(242, 236, 225, 0.85);
+
+    --accent: #e2705a;
+    --accent-deep: #ef8a76;
+    --accent-tint: #2e1d18;
+  }
+}
+
+/* --- Theme toggle button ------------------------------------ */
+.masthead-aside {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.theme-toggle .icon {
+  display: inline-flex;
+}
+
+/* Icon reflects the action: moon in light mode, sun in dark mode */
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+  display: inline-flex;
+}
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun {
+    display: inline-flex;
+  }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: none;
+  }
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
